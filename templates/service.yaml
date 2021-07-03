@@ -1,0 +1,21 @@
+{{ range .Values.services }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{.nameOverride}}
+  labels:
+    {{- include "mychart.labels" .labels | indent 4 }}
+spec:
+  type: {{ .type }}
+  ports:
+    - port: {{default .targetPort .port }}
+      targetPort: {{default .port .targetPort }}
+      {{- if ne .type "ClusterIP" }}
+      nodePort: {{.nodePort}}
+      {{- end}}
+      protocol: {{ default "TCP" .protocol}}
+      name: http
+  selector:
+    {{- include "mychart.labels" .labels | indent 4 }}
+{{- end }}

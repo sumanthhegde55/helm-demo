@@ -1,0 +1,25 @@
+{{- if .Values.configMap }}
+{{- if .Values.configMap.enabled }}
+{{- range .Values.configMap.files }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  {{- if contains "configmap" .name }}
+  name: {{ .name }}
+  {{- else }}
+  name: {{ .name }}-"configmap"
+  {{- end }}
+  {{- if $.Values.configMap.labels }}
+  labels:
+{{ toYaml $.Values.configMap.labels | indent 4 }}
+  {{- end }}
+{{- if $.Values.configMap.annotations }}
+  annotations:
+{{ toYaml $.Values.configMap.annotations | indent 4 }}
+{{- end }}
+data:
+{{ toYaml .data | indent 2 }}
+---
+{{- end }}
+{{- end }}
+{{- end }}
