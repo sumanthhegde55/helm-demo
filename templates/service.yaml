@@ -4,6 +4,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{.nameOverride}}
+  namespace: {{ default "default" .namespace }}
   labels:
     {{- include "mychart.labels" .labels | indent 4 }}
 spec:
