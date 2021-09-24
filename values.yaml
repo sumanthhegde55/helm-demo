@@ -62,6 +62,8 @@ services:
       app: mongo-express
     targetPort: 8081 
     nodePort: 30000
+    externalIPs:
+    - 127.0.0.1
 
 secret:
   enabled: true
