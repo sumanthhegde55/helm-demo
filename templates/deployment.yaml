@@ -4,6 +4,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{default $.Release.Name .nameOverride }}
+  namespace: {{default "'default" .namespace }}   
   labels:
     {{- include "mychart.labels" .labels | indent 4}}
 spec:
