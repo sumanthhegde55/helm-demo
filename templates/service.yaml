@@ -19,4 +19,9 @@ spec:
       name: http
   selector:
     {{- include "mychart.labels" .labels | indent 4 }}
+  {{- if .externalIPs }} 
+  {{ if eq .type "LoadBalancer" }}
+  externalIPs: 
+  - 127.0.0.1
+  {{- end }} 
 {{- end }}
