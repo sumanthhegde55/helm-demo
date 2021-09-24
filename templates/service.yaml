@@ -19,9 +19,4 @@ spec:
       name: http
   selector:
     {{- include "mychart.labels" .labels | indent 4 }}
-  {{- if eq .type "LoadBalancer" }}
-  "externalIPs" : [
-            "80.11.12.10"
-        ]
-  {{- end }} 
 {{- end }}
