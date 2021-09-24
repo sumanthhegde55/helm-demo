@@ -1,6 +1,6 @@
 deployments: 
   - nameOverride: mongo-deployment
-    namespace: demo-app
+    namespace: argocd
     labels: 
       app: mongodb
     image: mongo
@@ -19,7 +19,7 @@ deployments:
           name: mongodb-secret
           key: mongo-root-password
   - nameOverride: mongo-express-deployment
-    namespace: demo-app
+    namespace: argocd
     replicaCount: 1
     labels:
       app: mongo-express
@@ -46,7 +46,7 @@ deployments:
 services:
 
   - nameOverride: mongodb-service
-    namespace: demo-app
+    namespace: argocd
     type: ClusterIP
     labels:
       app: mongodb
@@ -54,7 +54,7 @@ services:
     port: 27017
 
   - nameOverride: mongo-express-service
-    namespace: demo-app
+    namespace: argocd
     type: LoadBalancer
     labels:
       app: mongo-express
@@ -67,7 +67,7 @@ secret:
   enabled: true
   files:
   - name: mongodb-secret
-    namespace: demo-app
+    namespace: argocd
     data:
       mongo-root-username: username
       mongo-root-password: password
@@ -76,6 +76,6 @@ configMap:
   enabled: true
   files:
   - name: mongodb-configmap
-    namespace: demo-app
+    namespace: argocd
     data:
       database_url: mongodb-service
