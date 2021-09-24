@@ -10,6 +10,7 @@ metadata:
   name: {{ .name }}-"configmap"
   {{- end }}
   {{- if $.Values.configMap.labels }}
+  namespace: {{default "default" .namespace }}
   labels:
 {{ toYaml $.Values.configMap.labels | indent 4 }}
   {{- end }}
