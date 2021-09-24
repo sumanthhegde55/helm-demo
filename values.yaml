@@ -1,5 +1,6 @@
 deployments: 
   - nameOverride: mongo-deployment
+    namespace: demo-app
     labels: 
       app: mongodb
     image: mongo
@@ -18,6 +19,7 @@ deployments:
           name: mongodb-secret
           key: mongo-root-password
   - nameOverride: mongo-express-deployment
+    namespace: demo-app
     replicaCount: 1
     labels:
       app: mongo-express
@@ -44,6 +46,7 @@ deployments:
 services:
 
   - nameOverride: mongodb-service
+    namespace: demo-app
     type: ClusterIP
     labels:
       app: mongodb
@@ -51,6 +54,7 @@ services:
     port: 27017
 
   - nameOverride: mongo-express-service
+    namespace: demo-app
     type: LoadBalancer
     labels:
       app: mongo-express
@@ -63,6 +67,7 @@ secret:
   enabled: true
   files:
   - name: mongodb-secret
+    namespace: demo-app
     data:
       mongo-root-username: username
       mongo-root-password: password
@@ -71,5 +76,6 @@ configMap:
   enabled: true
   files:
   - name: mongodb-configmap
+    namespace: demo-app
     data:
       database_url: mongodb-service
