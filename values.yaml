@@ -1,5 +1,5 @@
 deployments: 
-  - nameOverride: mongo-deployment
+  - nameOverride: NAME
     namespace: argocd
     labels: 
       app: mongodb
