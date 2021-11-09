@@ -1,68 +1,65 @@
-deployments: 
-  - nameOverride: NAME
-    namespace: argocd
-    labels: 
-      app: mongodb
-    image: mongo
-    imagePullPolicy: Always
-    replicaCount: 2
-    containerPort: 27017
-    env:
-    - name: MONGO_INITDB_ROOT_USERNAME
-      valueFrom:
-        secretKeyRef:
-          name: mongodb-secret
-          key: mongo-root-username
-    - name: MONGO_INITDB_ROOT_PASSWORD
-      valueFrom: 
-        secretKeyRef:
-          name: mongodb-secret
-          key: mongo-root-password
-  - nameOverride: mongo-express-deployment
-    namespace: argocd
-    replicaCount: 1
-    labels:
-      app: mongo-express
-    useUnifiedTopology: true
-    containerPort: 8081
-    image: mongo-express
-    imagePullPolicy: Always
-    env:
-    - name: ME_CONFIG_MONGODB_ADMINUSERNAME
-      valueFrom:
-        secretKeyRef:
-          name: mongodb-secret
-          key: mongo-root-username
-    - name: ME_CONFIG_MONGODB_ADMINPASSWORD
-      valueFrom: 
-        secretKeyRef:
-          name: mongodb-secret
-          key: mongo-root-password
-    - name: ME_CONFIG_MONGODB_SERVER
-      valueFrom: 
-        configMapKeyRef:
-          name: mongodb-configmap
-          key: database_url
+deployments:
+- nameOverride: NAME
+  namespace: argocd
+  labels:
+    app: mongodb
+  image: sumanthhegde/docker-test2:115
+  imagePullPolicy: Always
+  replicaCount: 2
+  containerPort: 27017
+  env:
+  - name: MONGO_INITDB_ROOT_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: mongodb-secret
+        key: mongo-root-username
+  - name: MONGO_INITDB_ROOT_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: mongodb-secret
+        key: mongo-root-password
+- nameOverride: mongo-express-deployment
+  namespace: argocd
+  replicaCount: 1
+  labels:
+    app: mongo-express
+  useUnifiedTopology: true
+  containerPort: 8081
+  image: mongo-express
+  imagePullPolicy: Always
+  env:
+  - name: ME_CONFIG_MONGODB_ADMINUSERNAME
+    valueFrom:
+      secretKeyRef:
+        name: mongodb-secret
+        key: mongo-root-username
+  - name: ME_CONFIG_MONGODB_ADMINPASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: mongodb-secret
+        key: mongo-root-password
+  - name: ME_CONFIG_MONGODB_SERVER
+    valueFrom:
+      configMapKeyRef:
+        name: mongodb-configmap
+        key: database_url
 services:
-
-  - nameOverride: mongodb-service
-    namespace: argocd
-    type: ClusterIP
-    labels:
-      app: mongodb
-    targetPort: 27017
-    port: 27017
-
-  - nameOverride: mongo-express-service
-    namespace: argocd
-    type: LoadBalancer
-    labels:
-      app: mongo-express
-    selector:
-      app: mongo-express
-    targetPort: 8081 
-    nodePort: 30000
-
+- nameOverride: mongodb-service
+  namespace: argocd
+  type: ClusterIP
+  labels:
+    app: mongodb
+  targetPort: 27017
+  port: 27017
+- nameOverride: mongo-express-service
+  namespace: argocd
+  type: LoadBalancer
+  labels:
+    app: mongo-express
+  selector:
+    app: mongo-express
+  targetPort: 8081
+  nodePort: 30000
 secret:
   enabled: true
   files:
@@ -71,7 +68,6 @@ secret:
     data:
       mongo-root-username: username
       mongo-root-password: password
-
 configMap:
   enabled: true
   files:
