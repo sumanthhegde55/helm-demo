@@ -1,9 +1,9 @@
 deployments:
-- nameOverride: NAME
+- nameOverride: mongo-deployment
   namespace: argocd
   labels:
     app: mongodb
-  image: sumanthhegde/docker-test2:115
+  image: sumanthhegde/docker-test2:117
   imagePullPolicy: Always
   replicaCount: 2
   containerPort: 27017
