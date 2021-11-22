@@ -14,7 +14,7 @@ deployments:
     app: mongodb
   image: sumanthhegde/test:121
   imagePullPolicy: Always
-  replicaCount: 2
+  replicaCount: 3
   containerPort: 27017
   env:
   - name: MONGO_INITDB_ROOT_USERNAME
@@ -29,7 +29,7 @@ deployments:
         key: mongo-root-password
 - nameOverride: mongo-express-deployment
   namespace: argocd
-  replicaCount: 1
+  replicaCount: 2
   labels:
     app: mongo-express
   useUnifiedTopology: true
