@@ -1,3 +1,12 @@
+secret:
+  enabled: true
+  files:
+  - name: mongodb-secret
+    namespace: argocd
+    data:
+      mongo-root-username: username
+      mongo-root-password: password
+
 deployments:
 - nameOverride: mongo-deployment
   namespace: argocd
@@ -60,14 +69,7 @@ services:
     app: mongo-express
   targetPort: 8081
   nodePort: 30000
-secret:
-  enabled: true
-  files:
-  - name: mongodb-secret
-    namespace: argocd
-    data:
-      mongo-root-username: username
-      mongo-root-password: password
+  
 configMap:
   enabled: true
   files:
