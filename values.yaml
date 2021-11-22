@@ -3,7 +3,7 @@ deployments:
   namespace: argocd
   labels:
     app: mongodb
-  image: sumanthhegde/test:119
+  image: sumanthhegde/test:120
   imagePullPolicy: Always
   replicaCount: 2
   containerPort: 27017
