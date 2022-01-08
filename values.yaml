@@ -6,13 +6,12 @@ secret:
     data:
       mongo-root-username: username
       mongo-root-password: password
-
 deployments:
 - nameOverride: mongo-deployment
   namespace: argocd
   labels:
     app: mongodb
-  image: sumanthhegde/test:121
+  image: 838134067393.dkr.ecr.ap-south-1.amazonaws.com/mydockerrepo:latest
   imagePullPolicy: Always
   replicaCount: 3
   containerPort: 27017
@@ -69,7 +68,6 @@ services:
     app: mongo-express
   targetPort: 8081
   nodePort: 30000
-  
 configMap:
   enabled: true
   files:
