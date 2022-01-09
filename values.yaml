@@ -60,7 +60,7 @@ services:
   targetPort: 27017
   port: 27017
 - nameOverride: mongo-express-service
-  namespace: argocd
+  namespace: default
   type: LoadBalancer
   labels:
     app: mongo-express
