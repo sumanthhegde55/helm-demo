@@ -7,7 +7,7 @@ secret:
       mongo-root-username: username
       mongo-root-password: password
 deployments:
-- nameOverride: mongo-deployment-ecr
+- nameOverride: mongo-deployment
   namespace: argocd
   labels:
     app: mongodb
