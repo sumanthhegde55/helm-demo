@@ -28,7 +28,7 @@ deployments:
         key: mongo-root-password
 - nameOverride: mongo-express-deployment
   namespace: default
-  replicaCount: 3
+  replicaCount: 2
   labels:
     app: mongo-express
   useUnifiedTopology: true
