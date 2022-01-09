@@ -11,7 +11,7 @@ deployments:
   namespace: default
   labels:
     app: mongodb
-  image: 838134067393.dkr.ecr.ap-south-1.amazonaws.com/mydockerrepo:latest
+  image: mongo
   imagePullPolicy: Always
   replicaCount: 2
   containerPort: 27017
