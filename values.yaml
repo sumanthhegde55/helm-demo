@@ -2,13 +2,13 @@ secret:
   enabled: true
   files:
   - name: mongodb-secret
-    namespace: argocd
+    namespace: default
     data:
       mongo-root-username: username
       mongo-root-password: password
 deployments:
 - nameOverride: mongo-deployment
-  namespace: argocd
+  namespace: default
   labels:
     app: mongodb
   image: 838134067393.dkr.ecr.ap-south-1.amazonaws.com/mydockerrepo:latest
@@ -27,7 +27,7 @@ deployments:
         name: mongodb-secret
         key: mongo-root-password
 - nameOverride: mongo-express-deployment
-  namespace: argocd
+  namespace: default
   replicaCount: 2
   labels:
     app: mongo-express
@@ -53,7 +53,7 @@ deployments:
         key: database_url
 services:
 - nameOverride: mongodb-service
-  namespace: argocd
+  namespace: default
   type: ClusterIP
   labels:
     app: mongodb
@@ -72,6 +72,6 @@ configMap:
   enabled: true
   files:
   - name: mongodb-configmap
-    namespace: argocd
+    namespace: default
     data:
       database_url: mongodb-service
