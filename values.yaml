@@ -3,11 +3,10 @@ deployments:
   namespace: default
   labels:
     app: react-app
-  image: mongo
+  image: sumanthhegde/jenkins:147
   imagePullPolicy: Always
   replicaCount: 2
   containerPort: 9000
-  
 services:
 - nameOverride: react-app-service
   namespace: default
