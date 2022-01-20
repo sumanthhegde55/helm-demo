@@ -10,7 +10,7 @@ deployments:
 services:
 - nameOverride: react-app-service
   namespace: default
-  type: NodePort
+  type: LoadBalancer
   labels:
     app: react-app
   selector:
