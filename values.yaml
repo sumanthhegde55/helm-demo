@@ -6,14 +6,14 @@ deployments:
   image: sumanthhegde/jenkins:153
   imagePullPolicy: Always
   replicaCount: 2
-  containerPort: 80
+  containerPort: 3000
 services:
 - nameOverride: react-app-service
   namespace: default
-  type: LoadBalancer
+  type: NodePort
   labels:
     app: react-app
   selector:
     app: react-app
-  targetPort: 80
+  targetPort: 3000
   nodePort: 31000
