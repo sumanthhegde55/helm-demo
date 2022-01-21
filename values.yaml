@@ -3,7 +3,7 @@ deployments:
   namespace: default
   labels:
     app: react-app
-  image: sumanthhegde/jenkins:149
+  image: sumanthhegde/jenkins:152
   imagePullPolicy: Always
   replicaCount: 2
   containerPort: 80
