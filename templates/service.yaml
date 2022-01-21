@@ -1,22 +1,13 @@
-{{ range .Values.services }}
----
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{.nameOverride}}
-  namespace: {{ default "default" .namespace }}
-  labels:
-    {{- include "mychart.labels" .labels | indent 4 }}
+  name: react-service
+  namespace: default
 spec:
-  type: {{ .type }}
+  type: LoadBalancer
   ports:
-    - port: {{default .targetPort .port }}
-      targetPort: {{default .port .targetPort }}
-      {{- if ne .type "ClusterIP" }}
-      nodePort: {{.nodePort}}
-      {{- end}}
-      protocol: {{ default "TCP" .protocol}}
-      name: http
+    - port: 3000
+      targetPort: 3000
+      protocol: TCP
   selector:
-    {{- include "mychart.labels" .labels | indent 4 }}
-{{- end }}
+    app: react
