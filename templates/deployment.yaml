@@ -1,32 +1,23 @@
-{{range .Values.deployments}}
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{default $.Release.Name .nameOverride }}
-  namespace: {{default "'default" .namespace }}   
+  name: react
+  namespace: default
   labels:
-    {{- include "mychart.labels" .labels | indent 4}}
+    app: react
 spec:
-  replicas: {{ default 1 .replicaCount }}
+  replicas: 1
   selector:
     matchLabels:
-      {{- include "mychart.labels" .labels | indent 6}}
+      app: react
   template:
     metadata:
       labels:
-        {{- include "mychart.labels" .labels | indent 8}}
+        app: react
     spec:
       containers:
-      - name: {{ default $.Release.Name .nameOverride}}  
-        image: {{ .image }}
-        imagePullPolicy: {{default "Always" .imagePullPolicy }}
+      - name: react
+        image: sumanthhegde/jenkins:153
+        imagePullPolicy: "Always"
         ports:
-        - name: http
-          containerPort: {{.containerPort }}
-          protocol: TCP
-        {{- if .env }}
-        env:
-        {{- toYaml .env | nindent 10}}
-        {{- end}}
-{{- end }}
+        - containerPort: 3000
