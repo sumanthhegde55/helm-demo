@@ -1,27 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend
+  name: react
+  namespace: default
+  labels:
+    app: react
 spec:
+  replicas: 2
   selector:
     matchLabels:
-      app: backend
-  replicas: 1
+      app: react
   template:
     metadata:
       labels:
-        app: backend
-        env: development
+        app: react
     spec:
       containers:
-      - name: backend
-        image: {{$.Values.image}}
+      - name: react
+        image: sumanthhegde/jenkins:153
+        imagePullPolicy: "Always"
         ports:
-        - containerPort: 4000
-        env:
-        - name: PORT
-          value: "4000"
-        - name: LOG_LEVEL
-          value: "info"
-        - name: NODE_ENV
-          value: "development"
+        - containerPort: 3000
