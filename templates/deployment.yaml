@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: react
-        image: sumanthhegde/jenkins:153
+        image: {{$.Values.image}}
         imagePullPolicy: "Always"
         ports:
         - containerPort: 3000
