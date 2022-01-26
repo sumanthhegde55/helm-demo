@@ -1,45 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: react
-  namespace: default
-  labels:
-    app: react
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: react
-  template:
-    metadata:
-      labels:
-        app: react
-    spec:
-      containers:
-      - name: react
-        image: sumanthhegde/jenkins:153
-        imagePullPolicy: "Always"
-        ports:
-        - containerPort: 3000
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: my-app-deployment
+  name: backend
 spec:
   selector:
     matchLabels:
-      app: my-app
+      app: backend
   replicas: 1
   template:
     metadata:
       labels:
-        app: my-app
+        app: backend
         env: development
     spec:
       containers:
-      - name: my-app
-        image: gcr.io/[PROJECT_ID]/app:v1
+      - name: backend
+        image: {{$.Values.image}}
         ports:
         - containerPort: 4000
         env:
