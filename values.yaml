@@ -1,4 +1,4 @@
-image: sumanthhegde/jenkins:181
+image: 838134067393.dkr.ecr.ap-south-1.amazonaws.com/mydockerrepo:latest
 secret:
   name: react-secret
-  data: 
+  data: null
