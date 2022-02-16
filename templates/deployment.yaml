@@ -15,6 +15,8 @@ spec:
       labels:
         app: react
     spec:
+      imagePullSecrets:
+      - name: react-secret
       containers:
       - name: react
         image: {{$.Values.image}}
