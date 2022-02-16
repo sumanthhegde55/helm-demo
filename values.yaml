@@ -1,1 +1,4 @@
 image: sumanthhegde/jenkins:181
+secret:
+  name: react-secret
+  data: 
