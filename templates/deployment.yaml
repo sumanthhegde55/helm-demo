@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: react
+  name: {{$.Values.name}}
   namespace: default
   labels:
-    app: react
+    app: {{$.Values.name}}
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: react
+      app: {{$.Values.name}}
   template:
     metadata:
       labels:
-        app: react
+        app: {{$.Values.name}}
     spec:
       imagePullSecrets:
       - name: react-secret
       containers:
-      - name: react
+      - name: {{$.Values.name}}
         image: {{$.Values.image}}
         imagePullPolicy: "Always"
         ports:
-        - containerPort: 3000
+        - containerPort: {{$.Values.port}}
