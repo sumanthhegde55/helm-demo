@@ -1,3 +1,3 @@
-name: 
-image: 838134067393.dkr.ecr.ap-south-1.amazonaws.com/mydockerrepo:latest
-port: 
+name: frontend
+image: 838134067393.dkr.ecr.ap-south-1.amazonaws.com/frontend_test:7
+port: 3000
